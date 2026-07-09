@@ -1,0 +1,1 @@
+# SmartDoc-AI-Intelligent-Document-Processing-IDP-System
