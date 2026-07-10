@@ -1,10 +1,12 @@
-from flask import Flask, render_template
+from flask import Flask
+from routes.upload import upload_bp
 
 app = Flask(__name__)
+app.register_blueprint(upload_bp)
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return "Welcome to SmartDoc AI"
 
 if __name__ == "__main__":
     app.run(debug=True)

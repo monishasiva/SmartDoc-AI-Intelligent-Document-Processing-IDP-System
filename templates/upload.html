@@ -1,72 +1,127 @@
 {% extends "base.html" %}
 
 {% block title %}
+
 Upload Document
+
 {% endblock %}
 
 {% block content %}
 
-<div class="card shadow">
+<div class="row justify-content-center">
 
-    <div class="card-header bg-primary text-white">
+    <div class="col-lg-8">
 
-        <h3>
+        <div class="card shadow">
 
-            Upload Invoice / Receipt
+            <div class="card-header bg-primary text-white">
 
-        </h3>
+                <h3>
 
-    </div>
+                    Upload Invoice / Receipt
 
-    <div class="card-body">
-
-        <form
-            action="/upload"
-            method="POST"
-            enctype="multipart/form-data">
-
-            <div class="mb-3">
-
-                <label class="form-label">
-
-                    Choose File
-
-                </label>
-
-                <input
-                    class="form-control"
-                    type="file"
-                    name="document"
-                    accept=".pdf,.png,.jpg,.jpeg"
-                    required>
+                </h3>
 
             </div>
 
-            <button
-                class="btn btn-success">
+            <div class="card-body">
 
-                Upload
+                <form method="POST" enctype="multipart/form-data">
 
-            </button>
+                    <div class="mb-3">
 
-        </form>
+                        <label class="form-label">
 
-        <hr>
+                            Choose File
 
-        <h5>
+                        </label>
 
-            Supported Formats
+                        <input class="form-control" type="file" name="document" accept=".pdf,.png,.jpg,.jpeg" required>
 
-        </h5>
+                    </div>
 
-        <ul>
+                    <button class="btn btn-success">
 
-            <li>PDF</li>
-            <li>PNG</li>
-            <li>JPG</li>
-            <li>JPEG</li>
+                        Upload
 
-        </ul>
+                    </button>
+
+                </form>
+
+                <hr>
+
+                <h5>
+
+                    Supported Formats
+
+                </h5>
+
+                <ul>
+
+                    <li>PDF</li>
+
+                    <li>PNG</li>
+
+                    <li>JPG</li>
+
+                    <li>JPEG</li>
+
+                </ul>
+
+                {% if success %}
+
+                <div class="alert alert-success mt-4">
+
+                    <h5>
+
+                        Invoice Uploaded Successfully
+
+                    </h5>
+
+                </div>
+
+                {% endif %}
+
+                {% if error %}
+
+                <div class="alert alert-danger mt-4">
+
+                    {{ error }}
+
+                </div>
+
+                {% endif %}
+
+                {% if image %}
+
+                <h4 class="mt-4">
+
+                    Image Preview
+
+                </h4>
+
+                <img src="{{ url_for('static',
+filename='../uploads/' + filename) }}" class="img-fluid border">
+
+                {% elif success %}
+
+                <div class="alert alert-info mt-4">
+
+                    <strong>
+
+                        {{ filename }}
+
+                    </strong>
+
+                    uploaded successfully.
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
 
     </div>
 

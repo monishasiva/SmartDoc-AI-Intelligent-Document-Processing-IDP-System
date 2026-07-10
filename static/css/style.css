@@ -1,0 +1,22 @@
+body {
+    background: #f5f7fa;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+}
+
+.card-header {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+footer {
+    margin-top: 100px;
+}
+
+.btn-success {
+    padding: 10px 30px;
+    font-size: 18px;
+}
