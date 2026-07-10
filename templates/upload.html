@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}
+Upload Document
+{% endblock %}
+
+{% block content %}
+
+<div class="card shadow">
+
+    <div class="card-header bg-primary text-white">
+
+        <h3>
+
+            Upload Invoice / Receipt
+
+        </h3>
+
+    </div>
+
+    <div class="card-body">
+
+        <form
+            action="/upload"
+            method="POST"
+            enctype="multipart/form-data">
+
+            <div class="mb-3">
+
+                <label class="form-label">
+
+                    Choose File
+
+                </label>
+
+                <input
+                    class="form-control"
+                    type="file"
+                    name="document"
+                    accept=".pdf,.png,.jpg,.jpeg"
+                    required>
+
+            </div>
+
+            <button
+                class="btn btn-success">
+
+                Upload
+
+            </button>
+
+        </form>
+
+        <hr>
+
+        <h5>
+
+            Supported Formats
+
+        </h5>
+
+        <ul>
+
+            <li>PDF</li>
+            <li>PNG</li>
+            <li>JPG</li>
+            <li>JPEG</li>
+
+        </ul>
+
+    </div>
+
+</div>
+
+{% endblock %}

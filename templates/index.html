@@ -1,13 +1,70 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>SmartDoc AI</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-<h1>Welcome to SmartDoc AI</h1>
+{% block title %}
+Home | SmartDoc AI
+{% endblock %}
 
-<p>Intelligent Document Processing using OCR and AI</p>
+{% block content %}
 
-</body>
-</html>
+<div class="row align-items-center">
+
+    <div class="col-lg-6">
+
+        <h1 class="display-4 fw-bold">
+
+            SmartDoc AI
+
+        </h1>
+
+        <p class="lead mt-4">
+
+            AI Powered Intelligent Document Processing
+
+        </p>
+
+        <hr>
+
+        <ul class="list-group list-group-flush">
+
+            <li class="list-group-item">
+                ✅ Upload Invoices
+            </li>
+
+            <li class="list-group-item">
+                ✅ Extract Text using OCR
+            </li>
+
+            <li class="list-group-item">
+                ✅ Generate Structured JSON
+            </li>
+
+            <li class="list-group-item">
+                ✅ Store Data in MySQL
+            </li>
+
+        </ul>
+
+        <br>
+
+        <a href="/upload"
+           class="btn btn-primary btn-lg">
+
+            Upload Document
+
+        </a>
+
+    </div>
+
+    <div class="col-lg-6 text-center">
+
+        <img
+            src="{{ url_for('static',
+            filename='images/document.png') }}"
+            class="img-fluid"
+            width="450">
+
+    </div>
+
+</div>
+
+{% endblock %}
