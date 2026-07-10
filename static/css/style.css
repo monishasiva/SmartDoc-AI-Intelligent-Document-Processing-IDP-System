@@ -1,22 +1,125 @@
+
 body {
-    background: #f5f7fa;
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
 }
+
+/* ---------- Navbar ---------- */
+
+.navbar {
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-link {
+    font-size: 17px;
+    margin-left: 10px;
+}
+
+.nav-link:hover {
+    color: #0d6efd !important;
+}
+
+/* ---------- Hero Section ---------- */
+
+.hero-section {
+    padding: 70px 0;
+}
+
+.hero-section h1 {
+    font-weight: 700;
+}
+
+.hero-section p {
+    font-size: 20px;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn-primary {
+    border-radius: 8px;
+    padding: 10px 25px;
+    font-weight: 600;
+}
+
+.btn-success {
+    border-radius: 8px;
+    padding: 10px 25px;
+    font-weight: 600;
+}
+
+.btn-primary:hover,
+.btn-success:hover {
+    transform: translateY(-2px);
+    transition: 0.3s;
+}
+
+/* ---------- Cards ---------- */
 
 .card {
     border: none;
     border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .card-header {
     font-size: 22px;
+    font-weight: 600;
+}
+
+/* ---------- Upload Area ---------- */
+
+input[type="file"] {
+    padding: 10px;
+}
+
+.upload-preview {
+    margin-top: 20px;
+}
+
+.upload-preview img {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+/* ---------- Tables ---------- */
+
+.table {
+    background: white;
+}
+
+.table th {
+    background: #0d6efd;
+    color: white;
+}
+
+/* ---------- Footer ---------- */
+
+footer {
+    margin-top: 80px;
+    background: #212529;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* ---------- Utility ---------- */
+
+.section-title {
+    margin-bottom: 25px;
     font-weight: bold;
 }
 
-footer {
-    margin-top: 100px;
+.shadow-custom {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-.btn-success {
-    padding: 10px 30px;
-    font-size: 18px;
+.rounded-custom {
+    border-radius: 15px;
 }
