@@ -6,62 +6,89 @@ Home | SmartDoc AI
 
 {% block content %}
 
-<div class="row align-items-center">
+<div class="container mt-5">
 
-    <div class="col-lg-6">
+    <div class="row align-items-center">
 
-        <h1 class="display-4 fw-bold">
+        <!-- Left Section -->
+        <div class="col-lg-6">
 
-            SmartDoc AI
+            <h1 class="display-4 fw-bold text-primary">
+                SmartDoc AI
+            </h1>
 
-        </h1>
+            <p class="lead mt-3">
+                AI-Powered Intelligent Document Processing System
+            </p>
 
-        <p class="lead mt-4">
+            <hr>
 
-            AI Powered Intelligent Document Processing
+            <ul class="list-group list-group-flush mb-4">
 
-        </p>
+                <li class="list-group-item">
+                    ✅ Upload Invoice / Receipt / Bill
+                </li>
 
-        <hr>
+                <li class="list-group-item">
+                    ✅ Extract Text using EasyOCR
+                </li>
 
-        <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    ✅ Convert OCR Text into Structured JSON
+                </li>
 
-            <li class="list-group-item">
-                ✅ Upload Invoices
-            </li>
+                <li class="list-group-item">
+                    ✅ Store Invoice Data in MySQL
+                </li>
 
-            <li class="list-group-item">
-                ✅ Extract Text using OCR
-            </li>
+            </ul>
 
-            <li class="list-group-item">
-                ✅ Generate Structured JSON
-            </li>
+            <!-- Upload Form -->
 
-            <li class="list-group-item">
-                ✅ Store Data in MySQL
-            </li>
+            <form action="/upload"
+                  method="POST"
+                  enctype="multipart/form-data">
 
-        </ul>
+                <div class="mb-3">
 
-        <br>
+                    <label class="form-label fw-bold">
 
-        <a href="/upload"
-           class="btn btn-primary btn-lg">
+                        Select Invoice
 
-            Upload Document
+                    </label>
 
-        </a>
+                    <input
+                        type="file"
+                        name="file"
+                        class="form-control"
+                        accept=".pdf,.png,.jpg,.jpeg"
+                        required>
 
-    </div>
+                </div>
 
-    <div class="col-lg-6 text-center">
+                <button
+                    type="submit"
+                    class="btn btn-primary btn-lg">
 
-        <img
-            src="{{ url_for('static',
-            filename='images/document.png') }}"
-            class="img-fluid"
-            width="450">
+                    Upload Document
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- Right Section -->
+
+        <div class="col-lg-6 text-center">
+
+            <img
+                src="{{ url_for('static', filename='images/document.png') }}"
+                class="img-fluid"
+                alt="Document"
+                width="450">
+
+        </div>
 
     </div>
 
