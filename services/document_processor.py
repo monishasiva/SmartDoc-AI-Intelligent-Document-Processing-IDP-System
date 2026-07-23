@@ -12,6 +12,7 @@ import os
 from services.pdf_converter import PDFConverter
 from services.preprocess import ImagePreprocessor
 from services.ocr import OCRService
+from services.gemini_parser import GeminiParser
 
 
 class DocumentProcessor:
@@ -24,34 +25,23 @@ class DocumentProcessor:
 
         self.ocr = OCRService()
 
+        self.gemini = GeminiParser()
+
     def process_document(self, file_path):
-        """
-        Complete document processing pipeline.
-
-        Parameters
-        ----------
-        file_path : str
-
-        Returns
-        -------
-        dict
-        """
 
         extension = os.path.splitext(file_path)[1].lower()
 
-        # PDF
         if extension == ".pdf":
 
             images = self.converter.convert_pdf(file_path)
 
-        # Image
         elif extension in [".jpg", ".jpeg", ".png"]:
 
             images = [file_path]
 
         else:
 
-            raise ValueError("Unsupported File Type")
+            raise ValueError("Unsupported file format")
 
         full_text = ""
 
@@ -65,12 +55,25 @@ class DocumentProcessor:
 
             _, text = self.ocr.extract_text(processed)
 
-            full_text += text
-            full_text += "\n\n"
+            full_text += text + "\n"
+
+        # ------------------------
+        # Gemini AI
+        # ------------------------
+        print("=" * 50)
+        print("OCR TEXT SENT TO GEMINI")
+        print("=" * 50)
+        print(full_text)
+        print("=" * 50)
+        invoice_json = self.gemini.extract_invoice_data(
+            full_text
+        )
 
         return {
 
-            "text": full_text,
+            "ocr_text": full_text,
+
+            "invoice_data": invoice_json,
 
             "processed_images": processed_images
 

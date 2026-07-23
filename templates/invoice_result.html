@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}
+Invoice Result
+{% endblock %}
+
+{% block content %}
+
+<div class="card shadow">
+
+    <div class="card-header bg-success text-white">
+
+        <h2>Invoice Information</h2>
+
+    </div>
+
+    <div class="card-body">
+
+        <table class="table table-bordered">
+
+            <tr>
+                <th>Vendor Name</th>
+                <td>{{ invoice.vendor_name }}</td>
+            </tr>
+
+            <tr>
+                <th>Invoice Number</th>
+                <td>{{ invoice.invoice_number }}</td>
+            </tr>
+
+            <tr>
+                <th>Invoice Date</th>
+                <td>{{ invoice.invoice_date }}</td>
+            </tr>
+
+            <tr>
+                <th>GST Number</th>
+                <td>{{ invoice.gst_number }}</td>
+            </tr>
+
+            <tr>
+                <th>Subtotal</th>
+                <td>{{ invoice.subtotal }}</td>
+            </tr>
+
+            <tr>
+                <th>Tax Amount</th>
+                <td>{{ invoice.tax_amount }}</td>
+            </tr>
+
+            <tr>
+                <th>Total Amount</th>
+                <td>{{ invoice.total_amount }}</td>
+            </tr>
+
+        </table>
+        <div>
+            <a href="{{ url_for('export_json', id=invoice.id) }}"
+                class="btn btn-primary">
+                JSON
+            </a>
+
+            <a href="{{ url_for('export_csv', id=invoice.id) }}"
+                class="btn btn-success">
+                CSV
+            </a>
+
+            <a href="{{ url_for('export_pdf', id=invoice.id) }}"
+                class="btn btn-danger">
+                PDF
+            </a>
+
+        </div>
+
+        <hr>
+
+        <h4>OCR Text</h4>
+
+        <textarea
+            class="form-control"
+            rows="12"
+            readonly>{{ ocr }}</textarea>
+
+    </div>
+
+</div>
+
+{% endblock %}

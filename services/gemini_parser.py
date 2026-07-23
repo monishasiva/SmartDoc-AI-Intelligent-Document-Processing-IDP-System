@@ -1,13 +1,13 @@
 """
 gemini_parser.py
 
-AI Invoice Information Extractor
-
-Project : SmartDoc AI
+SmartDoc AI
+Google Gen AI SDK
 """
 
 import json
-import google.generativeai as genai
+
+from google import genai
 
 from config import Config
 
@@ -16,54 +16,54 @@ class GeminiParser:
 
     def __init__(self):
 
-        genai.configure(
+        self.client = genai.Client(
             api_key=Config.GEMINI_API_KEY
         )
 
-        self.model = genai.GenerativeModel(
-            "gemini-2.5-flash"
-        )
-
-    def extract_invoice_data(self, text):
+    def extract_invoice_data(self, ocr_text):
 
         prompt = f"""
-You are an Intelligent Document Processing system.
+You are an Intelligent Document Processing System.
 
-Extract the following information from the invoice.
+Extract the invoice information.
 
 Return ONLY valid JSON.
 
-Fields:
+Schema:
 
-vendor_name
-
-invoice_number
-
-invoice_date
-
-gst_number
-
-subtotal
-
-tax_amount
-
-total_amount
+{{
+  "vendor_name": null,
+  "invoice_number": null,
+  "invoice_date": null,
+  "gst_number": null,
+  "subtotal": null,
+  "tax_amount": null,
+  "total_amount": null
+}}
 
 OCR TEXT:
 
-{text}
+{ocr_text}
 """
-
-        response = self.model.generate_content(prompt)
-
+        response = self.client.models.generate_content(
+            model="gemini-3.5-flash",
+            contents=prompt,
+            config={
+                "response_mime_type": "application/json"
+            }
+        )
+        print("=" * 50)
+        print("GEMINI RESPONSE")
+        print("=" * 50)
+        print(response.text)
+        print("=" * 50)
+       
         try:
+            return json.loads(response.text)
 
-            cleaned = response.text.replace("```json", "").replace("```", "").strip()
-
-            return json.loads(cleaned)
-
-        except Exception:
+        except json.JSONDecodeError:
 
             return {
+                "error": "Gemini did not return valid JSON",
                 "raw_response": response.text
             }
